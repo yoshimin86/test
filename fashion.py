@@ -138,7 +138,6 @@ for i in range(epochs):
     acc_test.append(accuracy_test)
 
 
-
 fig = plt.figure(figsize=(9,4))
 plt.subplots_adjust(wspace=0.4)
 x = np.arange(50)
