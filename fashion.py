@@ -90,12 +90,12 @@ for i in range(epochs):
             x = inputs
             y = labels
             output = net(x,flag=0)
-        predicted_train = torch.max(output.data, 1)
+        predicted_train = torch.max(output.data, 1)[1]
         if using_cuda:
-            y_predicted_train = predicted_train.to('cpu').numpy()
+            y_predicted_train = predicted_train.cpu().numpy()
         else:
             y_predicted_train = predicted_train.numpy()
-        n_true_train += np.sum(y_predicted_train == y.to('cpu').numpy())
+        n_true_train += np.sum(y_predicted_train == y.cpu().numpy())
         optimizer.zero_grad()
         loss1 = criterion(output, y)
         n_loss_train += float(loss1)
@@ -120,12 +120,12 @@ for i in range(epochs):
             x = inputs
             y = labels
             output = net(x,flag=1)
-        predicted = torch.max(output.data, 1)
+        predicted = torch.max(output.data, 1)[1]
         if using_cuda:
-            y_predicted = predicted.to('cpu').numpy()
+            y_predicted = predicted.cpu().numpy()
         else:
             y_predicted = predicted.numpy()
-        n_true_test += np.sum(y_predicted == y.to('cpu').numpy())
+        n_true_test += np.sum(y_predicted == y.cpu().numpy())
         loss2 = criterion(output, y)
         n_loss_test += float(loss2)
 
