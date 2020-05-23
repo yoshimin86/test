@@ -10,7 +10,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import cm
 
-print("OK")
+print("OK?")
 
 fashion_train = FashionMNIST('./Fashion',train=True,download=True,transform=transforms.ToTensor())
 fashion_test = FashionMNIST('./Fashion',train=False,download=True,transform=transforms.ToTensor())
