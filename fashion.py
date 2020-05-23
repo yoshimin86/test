@@ -91,7 +91,7 @@ for i in range(epochs):
             x = inputs
             y = labels
             output = net(x,flag=0)
-        _, predicted_train = torch.max(output.data, 1)
+        predicted_train = torch.max(output.data, 1)[1]
         if using_cuda:
             y_predicted_train = predicted_train.cpu().numpy()
         else:
@@ -121,7 +121,7 @@ for i in range(epochs):
             x = inputs
             y = labels
             output = net(x,flag=1)
-            _,predicted = torch.max(output.data, 1)
+        predicted = torch.max(output.data, 1)[1]
         if using_cuda:
             y_predicted = predicted.cpu().numpy()
         else:
