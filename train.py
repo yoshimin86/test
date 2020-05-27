@@ -65,7 +65,8 @@ for epoch in range(4):
     train_loss = 0
     for i, (input_3d,target) in enumerate(train_loader):
         optimizer.zero_grad()
-        input_3d_var = input_3d.permute(0,4,2,3,1)
+        #input_3d_var = input_3d.permute(0,4,2,3,1)
+        input_3d_var = input_3d
         if using_cuda:
             input_3d_var = input_3d_var.cuda()
         print(input_3d_var.shape)
