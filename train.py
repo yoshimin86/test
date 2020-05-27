@@ -17,10 +17,10 @@ test_label = []
 
 for i,d in enumerate(dirs):
     #ファイルの取得
-    files = os.listdir('./rgb_clips_mp4/'+d)
+    files = os.listdir('rgb_clips_mp4/'+d)
 
     for f in files:
-        filepath = './rgb_clips_mp4/'
+        filepath = 'rgb_clips_mp4/'
         cap = cv2.VideoCapture(filepath+d+'/'+f)
         vdata = []
         # 動画終了まで繰り返し
