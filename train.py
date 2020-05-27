@@ -51,7 +51,7 @@ i3.eval() #推論モードに切り替える
 i3.load_state_dict(torch.load('model_rgb.pth'))
 i3.train() #訓練モードに切り替える
 
-criterion = torch.nn.L1Loss()
+criterion = nn.NLLLoss()
 optimizer = torch.optim.SGD(i3.parameters(), lr=0.001, momentum=0.9)
 
 using_cuda = torch.cuda.is_available()
