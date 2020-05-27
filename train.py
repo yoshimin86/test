@@ -55,6 +55,10 @@ i3.cuda()
 criterion = torch.nn.L1Loss()
 optimizer = torch.optim.SGD(i3.parameters(), lr=0.001, momentum=0.9)
 
+if using_cuda:
+    i3.cuda()
+    criterion.cuda()
+
 for epoch in range(4):
     train_loss = 0
     for i, (input_3d,target) in enumerate(train_loader):
