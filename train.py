@@ -46,7 +46,7 @@ train_loader = DataLoader(train,batch_size=2,shuffle=True)
 print(train_x.shape)
 
 
-i3 = I3D(num_classes=4)
+i3 = I3D(num_classes=400)
 i3.eval() #推論モードに切り替える
 i3.load_state_dict(torch.load('model_rgb.pth'))
 i3.train() #訓練モードに切り替える
