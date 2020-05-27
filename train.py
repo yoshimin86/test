@@ -2,7 +2,7 @@ import argparse
 import torch
 from i3dpt import I3D
 import torch.nn
-import os
+#import os
 import cv2
 import numpy as np
 from torch.utils.data import DataLoader,TensorDataset
@@ -17,7 +17,7 @@ test_label = []
 
 for i,d in enumerate(dirs):
     #ファイルの取得
-    files = os.listdir('rgb_clips_mp4/'+d)
+    files = 'rgb_clips_mp4/'+d
 
     for f in files:
         filepath = 'rgb_clips_mp4/'
