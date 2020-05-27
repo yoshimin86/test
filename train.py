@@ -54,6 +54,8 @@ i3.train() #訓練モードに切り替える
 criterion = torch.nn.L1Loss()
 optimizer = torch.optim.SGD(i3.parameters(), lr=0.001, momentum=0.9)
 
+using_cuda = torch.cuda.is_available()
+
 if using_cuda:
     i3.cuda()
     criterion.cuda()
