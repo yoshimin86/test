@@ -43,7 +43,7 @@ train_x = torch.from_numpy(data).float()
 train_y = torch.from_numpy(label).long()
 train = TensorDataset(train_x,train_y)
 train_loader = DataLoader(train,batch_size=2,shuffle=True)
-
+print(train_x.shape)
 
 
 i3 = I3D(num_classes=400)
