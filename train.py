@@ -55,6 +55,7 @@ criterion = torch.nn.L1Loss()
 optimizer = torch.optim.SGD(i3.parameters(), lr=0.001, momentum=0.9)
 
 using_cuda = torch.cuda.is_available()
+print(using_cuda)
 
 if using_cuda:
     i3.cuda()
@@ -64,7 +65,9 @@ for epoch in range(4):
     train_loss = 0
     for i, (input_3d,target) in enumerate(train_loader):
         optimizer.zero_grad()
-        input_3d_var = input_3d.permute(0,4,2,3,1).cuda()
+        input_3d_var = input_3d.permute(0,4,2,3,1)
+        if using_cuda:
+            input_3d_var = input_3d_var.cuda()
         print(input_3d_var.shape)
 
         out_pt,_ = i3(input_3d_var)
