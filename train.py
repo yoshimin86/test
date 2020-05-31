@@ -1,7 +1,7 @@
 import argparse
 import torch
 from i3dpt import I3D
-from nAction_TF_I3D_maker/weights import my_rgb_model.ckpt
+from nAction_TF_I3D_maker.weights import my_rgb_model.ckpt
 import torch.nn
 import os
 import cv2
