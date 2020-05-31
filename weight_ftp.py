@@ -15,7 +15,8 @@ def transfer_weights(tf_checkpoint,pt_checkpoint, batch_size, frame_nb, class_nb
         scope = 'RGB'
     elif modality == 'flow':
         scope = 'Flow'
-""""with tf.variable_scope(scope):
+    
+    with tf.variable_scope(scope):
         rgb_model = InceptionI3d(class_nb,final_endpoint='Logits')
         rgb_input = tf.placeholder(
             tf.float32,
@@ -28,8 +29,7 @@ def transfer_weights(tf_checkpoint,pt_checkpoint, batch_size, frame_nb, class_nb
         if variable.name.split('/')[0] == scope:
             rgb_variable_map[variable.name.replace(':0','')] = variable
     rgb_saver = tf.train.Saver(var_list=rgb_variable_map, reshape=True)
-"""
-    
+
     
     with tf.Session() as sess:
         rgb_saver.restore(sess,tf_checkpoint)
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     parser.add_argument(
         '--frame_nb',
         type=int,
-        default='79',
+        default='16',
         help='Batch size for comparison between tensorflow and pytorch outputs')
     parser.add_argument(
         '--class_nb',
