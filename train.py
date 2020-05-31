@@ -48,7 +48,7 @@ print(train_x.shape)
 
 i3 = I3D(num_classes=5)
 i3.eval() #推論モードに切り替える
-i3.load_state_dict(torch.load('nAction_TF_I3D_maker/weights/my_RGB_model.ckpt.data-00000-of-00001'))
+i3.load_state_dict(torch.load('nAction_TF_I3D_maker/weights/model_rgb.pth'))
 i3.train() #訓練モードに切り替える
 
 criterion = torch.nn.NLLLoss()
