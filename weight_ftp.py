@@ -38,6 +38,7 @@ def transfer_weights(tf_checkpoint,pt_checkpoint, batch_size, frame_nb, class_nb
         i3d_pt.load_tf_weights(sess)
         i3d_pt_state_dict = i3d_pt.cpu().state_dict()
         torch.save(i3d_pt_state_dict,pt_checkpoint)
+        print("ok")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
