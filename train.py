@@ -1,7 +1,7 @@
 import argparse
 import torch
 from i3dpt import I3D
-import nAction_TF_I3D_maker 
+from nAction_TF_I3D_maker/weights import my_rgb_model.ckpt
 import torch.nn
 import os
 import cv2
@@ -49,7 +49,7 @@ print(train_x.shape)
 
 i3 = I3D(num_classes=5)
 i3.eval() #推論モードに切り替える
-i3.load_state_dict(torch.load(nAction_TF_I3D_maker/weights/my_RGB_model.ckpt))
+i3.load_state_dict(torch.load(my_RGB_model.ckpt))
 i3.train() #訓練モードに切り替える
 
 criterion = torch.nn.NLLLoss()
