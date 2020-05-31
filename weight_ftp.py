@@ -75,7 +75,7 @@ if __name__ == "__main__":
     parser.add_argument(
         '--frame_nb',
         type=int,
-        default='16',
+        default='79',
         help='Batch size for comparison between tensorflow and pytorch outputs')
     parser.add_argument(
         '--class_nb',
