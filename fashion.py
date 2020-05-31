@@ -59,6 +59,7 @@ class Net(nn.Module):
 
 
 using_cuda = torch.cuda.is_available()
+print(using_cuda)
 net = Net()
 
 criterion = nn.NLLLoss()
