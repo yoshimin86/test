@@ -33,10 +33,10 @@ _SAMPLE_PATHS = {
 }
 
 _CHECKPOINT_PATHS = {
-    'rgb': 'data/checkpoints/rgb_scratch/model.ckpt',
+    'rgb': 'data/rgb_scratch/model.ckpt',
     'rgb600': 'data/checkpoints/rgb_scratch_kin600/model.ckpt',
     'flow': 'data/checkpoints/flow_scratch/model.ckpt',
-    'rgb_imagenet': 'data/checkpoints/rgb_imagenet/model.ckpt',
+    'rgb_imagenet': 'data/rgb_imagenet/model.ckpt',
     'flow_imagenet': 'data/checkpoints/flow_imagenet/model.ckpt',
 }
 
@@ -45,8 +45,8 @@ _LABEL_MAP_PATH_600 = 'data/label_map_600.txt'
 
 FLAGS = tf.flags.FLAGS
 
-#tf.flags.DEFINE_string('eval_type', 'rgb', 'rgb, rgb600, flow, or joint')
-tf.flags.DEFINE_string('eval_type', 'joint', 'rgb, rgb600, flow, or joint')
+tf.flags.DEFINE_string('eval_type', 'rgb', 'rgb, rgb600, flow, or joint')
+#tf.flags.DEFINE_string('eval_type', 'joint', 'rgb, rgb600, flow, or joint')
 tf.flags.DEFINE_boolean('imagenet_pretrained', True, '')
 
 def make(unused_argv):
@@ -67,10 +67,10 @@ def make(unused_argv):
   if eval_type not in ['rgb', 'rgb600', 'flow', 'joint']:
     raise ValueError('Bad `eval_type`, must be one of rgb, rgb600, flow, joint')
 
-  if eval_type == 'rgb600':
-    kinetics_classes = [x.strip() for x in open(_LABEL_MAP_PATH_600)]
-  else:
-    kinetics_classes = [x.strip() for x in open(_LABEL_MAP_PATH)]
+  #if eval_type == 'rgb600':
+    #kinetics_classes = [x.strip() for x in open(_LABEL_MAP_PATH_600)]
+  #else:
+    #kinetics_classes = [x.strip() for x in open(_LABEL_MAP_PATH)]
 
   if eval_type in ['rgb', 'rgb600', 'joint']:
     print('Building RGB models...', end='')
