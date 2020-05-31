@@ -46,7 +46,7 @@ train_loader = DataLoader(train,batch_size=2,shuffle=True)
 print(train_x.shape)
 
 
-i3 = I3D(num_classes=400)
+i3 = I3D(num_classes=5)
 i3.eval() #推論モードに切り替える
 i3.load_tf_weights('nAction_TF_I3D_maker/weights/my_RGB_model.ckpt')
 i3 = i3.state_dict()
