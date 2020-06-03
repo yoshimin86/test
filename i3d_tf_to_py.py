@@ -30,15 +30,15 @@ def transfer_weights(tf_checkpoint, pt_checkpoint, batch_size, modality='rgb'):
         raise ValueError(
             '{} not among known modalities [rgb|flow]'.format(modality))
 
-    frame_nb = 16  # Number of items in depth (temporal) dimension
-    class_nb = 400
+    frame_nb = 64  # Number of items in depth (temporal) dimension
+    class_nb = 4
 
     # Initialize dataset
     loader = torch.utils.data.DataLoader(
         dataset, batch_size=batch_size, shuffle=False)
 
     # Initialize pytorch I3D
-    i3nception_pt = I3D(num_classes=400, modality=modality)
+    i3nception_pt = I3D(num_classes=4, modality=modality)
 
     # Initialzie tensorflow I3D
     if modality == 'rgb':
@@ -141,12 +141,13 @@ if __name__ == "__main__":
     parser.add_argument(
         '--rgb_tf_checkpoint',
         type=str,
-        default='model/tf_rgb_imagenet/model.ckpt',
+        #default='model/tf_rgb_imagenet/model.ckpt',
+        default='nAction_TF_I3D_maker/weights/my_RGB_model.ckpt',
         help='Path to tensorflow weight checkpoint trained on rgb')
     parser.add_argument(
         '--rgb_pt_checkpoint',
         type=str,
-        default='model/model_rgb.pth',
+        default='nAction_TF_I3D_maker/weights/my_RGB_model.pth',
         help='Path for pytorch state_dict saving')
     parser.add_argument(
         '--flow', action='store_true', help='Convert Flow pretrained network')
