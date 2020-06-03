@@ -43,23 +43,33 @@ train_x = torch.from_numpy(data).float()
 train_y = torch.from_numpy(label).long()
 train = TensorDataset(train_x,train_y)
 train_loader = DataLoader(train,batch_size=2,shuffle=True)
+print(train_x.shape)
 
 
-
-i3 = I3D(num_classes=400)
+i3 = I3D(num_classes=5)
 i3.eval() #推論モードに切り替える
-i3.load_state_dict(torch.load('model/model_rgb.pth'))
+i3.load_tf_weights('nAction_TF_I3D_maker/weights/my_RGB_model.ckpt')
+i3 = i3.state_dict()
+#i3.load_state_dict(torch.load('nAction_TF_I3D_maker/weights/my_RGB_model.ckpt'))
 i3.train() #訓練モードに切り替える
-i3.cuda()
 
-criterion = torch.nn.L1Loss()
+criterion = torch.nn.NLLLoss()
 optimizer = torch.optim.SGD(i3.parameters(), lr=0.001, momentum=0.9)
+
+using_cuda = torch.cuda.is_available()
+print(using_cuda)
+
+if using_cuda:
+    i3.cuda()
+    criterion.cuda()
 
 for epoch in range(4):
     train_loss = 0
     for i, (input_3d,target) in enumerate(train_loader):
         optimizer.zero_grad()
-        input_3d_var = input_3d.permute(0,4,2,3,1).cuda()
+        input_3d_var = input_3d.permute(0,4,1,2,3)
+        if using_cuda:
+            input_3d_var = input_3d_var.cuda()
         print(input_3d_var.shape)
 
         out_pt,_ = i3(input_3d_var)
